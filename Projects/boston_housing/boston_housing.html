@@ -13293,9 +13293,9 @@ Standard deviation of prices: $165171.13154429477
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>-i expect a home that has a RM value of 7 to cost more than a home with a RM of 6
--i expect a home with a LSTAT value of 15 to cost less than a home with a LSTAT value of 20 
--i expect a home with a PTRATIO of 10 to cost more than a home with PTRATIO of value 15</p>
+<p>-i expect a home that has a RM value of 7 to cost more than a home with a RM of 6 because the more rooms the expensive the house gets.
+-i expect a home with a LSTAT value of 15 to cost less than a home with a LSTAT value of 20 because the poorer the area the less desirable it is to live in.
+-i expect a home with a PTRATIO of 10 to cost more than a home with PTRATIO of value 15 because the less the student-teacher ratio is the higher the quality of educatiom.</p>
 
 </div>
 </div>
@@ -13588,8 +13588,8 @@ Think about the pros and cons of adding more training points based on if the tra
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>-second mode, max depth of 3
--the test score and training score converge more to eachother
--no</p>
+-the test score and training score converge more to eachother that they will touch each other after a long time.
+-no, they would converege to each other but it will be within the same range of score which won't make a difference.</p>
 
 </div>
 </div>
@@ -13653,8 +13653,8 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>-high bias
--high variance</p>
+<p>-high bias, because the score is very bad and the test and training score and close to eachother
+-high variance, because the score of the training score is very high while the testing score is very low and away from the training score.</p>
 
 </div>
 </div>
@@ -13704,7 +13704,7 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>-the grid search calculates the f1 score of a model using different parameters and returns the best model.
+<p>-grid search takes some parameters like : 1-model type, 2-parameters, 3-scoring function: model type is the model i choose to be evaluated, the parameters are the parameters i need to tune by grid search, the scoring function is the function i give to the gridsearch to evaluate the model with like (f1score or r2score), then it gives us the best parameters from the set of parameters given to it according to the scoring function.
 -it is used by giving alot of parameters to a model instead of trying each parameter by hand</p>
 
 </div>
@@ -13891,7 +13891,8 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Parameter 'max_depth' is 4 for the optimal model.</p>
+<p>Parameter 'max_depth' is 4 for the optimal model.
+and the max depth provided by the learning algorithim is worse, because it's not accurate.</p>
 
 </div>
 </div>
@@ -13985,7 +13986,8 @@ Predicted selling price for Client 3&#39;s home: $931,636.36
 <p>Predicted selling price for Client 1's home: $403,025.00
 Predicted selling price for Client 2's home: $237,478.72
 Predicted selling price for Client 3's home: $931,636.36
--no</p>
+-no, because taking a look at for example client number 2 :having a home price of 237 thousand puts him at a high cost than the minimum price of houses in data while having worse features:less rooms, higher LSTAT rate and PTRATIO higher rate
+-client number 3:while this client has a price of 931 thousand which is less than the most expensive house in the training data but yet having : lower LSTAT rate and lower PTRATIO rate</p>
 
 </div>
 </div>
@@ -14064,9 +14066,10 @@ Range in prices: $73,357.39
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>-inflation is very important
 -no, yes everything should be factored in calculating a house's price
+-no, because in our example it sold a bad house for more than it should and a good house for less than it should
+-no, because the data would be different and will include other factors than are not in the other city
 -no
--no
--no</p>
+-no, it should not be used in real world because : 1- it's not robust, 2- it uses too little data and data features, 3-it uses features that should not affect the price that much.</p>
 
 </div>
 </div>

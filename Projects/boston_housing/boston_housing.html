@@ -13438,7 +13438,8 @@ Standard deviation of prices: $165171.13154429477
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>yes, because its has more than 90% accuracy (which is 90% more than the mean value of the target)</p>
+<p>yes, because r2 of 0.923 means that 92.3% of the variance is predicted.
+and the lower the percentage the less likely it is to predict the variance.</p>
 
 </div>
 </div>
@@ -13511,7 +13512,7 @@ Standard deviation of prices: $165171.13154429477
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>to avoid overfitting of the alogrithim</p>
+<p>to avoid overfitting of the alogrithim, because if you use the the entire data as training data the algorithim will have a high variance and memorize the training data which will make a very bad predicting algorithim.</p>
 
 </div>
 </div>
@@ -13724,43 +13725,10 @@ Think about the pros and cons of adding more training points based on if the tra
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">-</span><span class="n">a</span> <span class="n">technique</span> <span class="n">used</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">throwing</span> <span class="n">training</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">using</span> <span class="n">them</span> <span class="k">as</span> <span class="n">test</span> <span class="n">data</span> <span class="n">only</span><span class="p">,</span> <span class="n">k</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">buckets</span> <span class="p">(</span><span class="n">how</span> <span class="n">many</span> <span class="n">times</span> <span class="n">we</span><span class="s1">&#39;re going to train and test our data)</span>
-<span class="o">-</span><span class="n">the</span> <span class="n">problem</span> <span class="n">of</span> <span class="n">grid</span> <span class="n">search</span> <span class="ow">is</span> <span class="n">using</span> <span class="n">the</span> <span class="n">same</span> <span class="n">data</span> <span class="n">everytime</span> <span class="n">a</span> <span class="n">new</span> <span class="n">parameter</span> <span class="ow">is</span> <span class="n">chosen</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">a</span> <span class="n">new</span> <span class="n">f1</span><span class="p">,</span> <span class="k">with</span> <span class="n">k</span><span class="o">-</span><span class="n">fold</span> <span class="n">you</span> <span class="n">get</span> <span class="n">more</span> <span class="n">randomness</span> <span class="ow">and</span> <span class="n">possibilties</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-cyan-intense-fg ansi-bold">  File </span><span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-44-21d85d5b0149&gt;&#34;</span><span class="ansi-cyan-intense-fg ansi-bold">, line </span><span class="ansi-green-intense-fg ansi-bold">1</span>
-<span class="ansi-yellow-intense-fg ansi-bold">    -a technique used to avoid throwing training data and using them as test data only, k is the number of buckets (how many times we&#39;re going to train and test our data)</span>
-<span class="ansi-white-intense-fg ansi-bold">               ^</span>
-<span class="ansi-red-intense-fg ansi-bold">SyntaxError</span><span class="ansi-red-intense-fg ansi-bold">:</span> invalid syntax
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
+</div>-a technique used to avoid throwing training data and using them as test data only, k is the number of buckets (how many times we're going to train and test our data), 
+-k-fold is applied to training and testing data in which it uses cross validation in the algorithim to check for any overfitting or underfitting.
+-first we keep 1 set as the validation set and do k-1 sets as the cross validation sets and we train our model using the cross validation data set then calculate the accuracy using the validation set, then we calculate the average score at the end.
+-the problem of grid search is using the same data everytime a new parameter is chosen to calculate a new f1, with k-fold you get more randomness and possibilties
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13892,7 +13860,7 @@ Think about the pros and cons of adding more training points based on if the tra
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Parameter 'max_depth' is 4 for the optimal model.
-and the max depth provided by the learning algorithim is worse, because it's not accurate.</p>
+-yes if we use max depth as 4 we will have a higher average score when using cross validation, but the test and training score are way apart from eachother will means the algorithim will be underfit even though it has a higher score.</p>
 
 </div>
 </div>

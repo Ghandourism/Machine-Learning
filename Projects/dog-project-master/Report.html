@@ -12130,6 +12130,17 @@ There are 836 test dog images.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## (Optional) TODO: Report the performance of another  </span>
 <span class="c1">## face detection algorithm on the LFW dataset</span>
 <span class="c1">### Feel free to use as many code cells as needed.</span>
+
+
+
+
+<span class="c1">#of course it&#39;s not reasonable as we have to give the algorithim alot of angles of each single face, i think a better solution</span>
+<span class="c1">#is to use CNNs</span>
+
+
+
+
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
 <span class="n">face_cascade</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="s1">&#39;haarcascade_frontalface_default.xml&#39;</span><span class="p">)</span>
@@ -12488,11 +12499,17 @@ $$</p>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
 <span class="c1">#model.add(Conv2D(64, kernel_size=3, activation=&#39;relu&#39;, input_shape=(225,225,16)))</span>
+
+<span class="c1">#i used the first conv layer to give it my input</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;relu&#39;</span><span class="p">,</span>
                  <span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="c1">#then i used pooling to reduce the computational and spatial parameters of the network</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+<span class="c1">#then i used another conv layer to increase accuracy</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+<span class="c1">#then another pooling layer to decrease the spatial parameter</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+<span class="c1">#then adding a global aveerage pool and dense layer to add a drop out to avoid overfitting</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">GlobalAveragePooling2D</span><span class="p">())</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
@@ -13120,7 +13137,11 @@ test_{network} = bottleneck_features['test']</code></pre>
 <span class="n">inception_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
 <span class="c1">#changing the output of the model to 133 which is equal to the number of dog breeds.</span>
 <span class="n">inception_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">133</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
-                    
+
+<span class="c1">#transfer learning of the inception model worked because the inception model was already trained on a similar task with a good </span>
+<span class="c1">#architecure, while the first model had far less accuracy because the model wasn&#39;t well trained and had much worse architecture.</span>
+
+
 <span class="n">inception_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 

@@ -19,18 +19,58 @@ class Task():
         self.action_repeat = 3
 
         self.state_size = self.action_repeat * 6
-        self.action_low = 0
-        self.action_high = 900
+        self.action_low = 10
+        self.action_high = 100
         self.action_size = 4
 
         # Goal
         self.target_pos = target_pos if target_pos is not None else np.array([0., 0., 10.]) 
 
     def get_reward(self):
-        """Uses current pose of sim to return reward."""
-        reward = 1.-.3*(abs(self.sim.pose[:3] - self.target_pos)).sum()
+        reward=0
+        current_position = self.sim.pose[:3]
+        #reward = 1.-.3*(abs(self.sim.pose[2] - self.target_pos[2])).sum()
+        penalty_distance_x=abs((current_position[0]-self.target_pos[0]))
+        penalty_distance_y=abs((current_position[1]-self.target_pos[1]))
+        penalty_distance_z=abs((current_position[2]-self.target_pos[2]))
+        if penalty_distance_x < 5:
+            reward += 100
+        elif penalty_distance_x<4:
+            reward += 200
+        elif penalty_distance_x<3:
+            reward += 300
+        elif penalty_distance_x<2:
+            reward += 400
+        elif penalty_distance_x<1: 
+            reward += 500
+        else :
+            reward+=-500
+        if penalty_distance_y < 5:
+            reward += 100
+        elif penalty_distance_y<4:
+            reward += 200
+        elif penalty_distance_y<3:
+            reward += 300
+        elif penalty_distance_y<2:
+            reward += 400
+        elif penalty_distance_y<1: 
+            reward += 500
+        else :
+            reward+=-500    
+        if penalty_distance_z < 5:
+            reward += 100
+        elif penalty_distance_z<4:
+            reward += 200
+        elif penalty_distance_z<3:
+            reward += 300
+        elif penalty_distance_z<2:
+            reward += 400
+        elif penalty_distance_z<1: 
+            reward += 500
+        else :
+            reward+=-500   
         return reward
-
+        
     def step(self, rotor_speeds):
         """Uses action to obtain next state, reward, done."""
         reward = 0
